@@ -82,8 +82,10 @@ const getMyEvent = async (req, res) => {
                 booking => booking.eventId.startTime > now
             );
         } else {
+
             return res.status(400).json({
-                message: "Type must be past, current or future"
+                message: "All Your Event....",
+                data:myEvent
             });
         }
         filteredEvents.sort(

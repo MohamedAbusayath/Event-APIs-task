@@ -10,6 +10,6 @@ bookingRoutes.get("/my-event",authMiddleware,authorizeRole("CUSTOMER"),getMyEven
 
 bookingRoutes.get("/near",authMiddleware,authorizeRole("CUSTOMER"),getNearbyEvents);
 
-bookingRoutes.patch("/cancel/:booingId",authMiddleware,authorizeRole("CUSTOMER"),eventCancel);
+bookingRoutes.patch("/cancel/:bookingId",authMiddleware,authorizeRole("CUSTOMER"),eventCancel);
 
 module.exports=bookingRoutes;

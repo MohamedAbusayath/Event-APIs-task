@@ -1,6 +1,6 @@
 const express=require("express");
 const eventRoutes=express.Router();
-const {createEvent,getEvents,getOne,updateEvent,cancelEvent}=require("../Controller/eventController");
+const {createEvent,getEvents,getOne,updateEvent,cancelEvent,getParticipants}=require("../Controller/eventController");
 const { eventValid } = require("../Validation/eventValidation");
 const authMiddleware=require("../Middleware/authMiddleware");
 const authorizeRole=require("../Middleware/roleMiddleware");
@@ -15,5 +15,6 @@ eventRoutes.put("/:id",authMiddleware,authorizeRole("ADMIN"),eventValid,updateEv
 
 eventRoutes.patch("/cancel/:id",authMiddleware,authorizeRole("ADMIN"),cancelEvent);
 
+eventRoutes.get("/participants/:eventId",authMiddleware,authorizeRole("ADMIN"),getParticipants);
 
 module.exports=eventRoutes;

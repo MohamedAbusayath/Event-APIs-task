@@ -1,4 +1,6 @@
-const Event=require("../Modules/Event");
+const Event = require("../Modules/Event");
+const Booking = require("../Modules/Booking");
+const User = require("../Modules/User");
 
 const createEvent=async (req,res)=>{
     try{
@@ -119,12 +121,40 @@ const cancelEvent = async (req, res) => {
     }
 };
 
+const getParticipants = async (req, res) => {
+    try {
+        const { eventId } = req.params;
 
+        const event = await Event.findById(eventId);
+
+        if (!event) {
+            return res.status(404).json({
+                message: "Event not found"
+            });
+        }
+
+        const participants = await Booking.find({
+            eventId: eventId
+        }).populate("userId", "name email");
+
+        return res.status(200).json({
+            message: "Event participants",
+            data: participants
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal Server Error",
+            error: error.message
+        });
+    }
+};
 
 module.exports = {
     createEvent,
     getEvents,
     getOne,
     updateEvent,
-    cancelEvent
+    cancelEvent,
+    getParticipants
 };
