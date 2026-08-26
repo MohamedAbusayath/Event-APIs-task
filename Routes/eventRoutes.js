@@ -7,12 +7,13 @@ const authorizeRole=require("../Middleware/roleMiddleware");
 
 eventRoutes.post("/",authMiddleware,authorizeRole("ADMIN"),eventValid,createEvent);
 
-eventRoutes.get("/",authMiddleware,authorizeRole("ADMIN"),getEvents);
+eventRoutes.get("/",authMiddleware,getEvents);
 
 eventRoutes.get("/:id",authMiddleware,authorizeRole("ADMIN"),getOne);
 
 eventRoutes.put("/:id",authMiddleware,authorizeRole("ADMIN"),eventValid,updateEvent);
 
 eventRoutes.patch("/cancel/:id",authMiddleware,authorizeRole("ADMIN"),cancelEvent);
+
 
 module.exports=eventRoutes;

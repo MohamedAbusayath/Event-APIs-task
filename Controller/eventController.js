@@ -119,6 +119,8 @@ const cancelEvent = async (req, res) => {
     }
 };
 
+
+
 module.exports = {
     createEvent,
     getEvents,
