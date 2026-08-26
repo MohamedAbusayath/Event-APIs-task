@@ -70,7 +70,7 @@ const getMyEvent = async (req, res) => {
         const now = new Date();
         let filterEvents;
         if (type === "past") {
-            filterEvent = myEvent.filter(booking => booking.eventId.endTime < now);
+            filterEvents = myEvent.filter(booking => booking.eventId.endTime < now);
         } else if (type === "current") {
             filteredEvents = myEvent.filter(
                 booking =>
